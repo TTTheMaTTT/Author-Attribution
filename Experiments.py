@@ -9,8 +9,7 @@ import jsonpickle
 
 authors_path="D:\Chisto Moya Papka!!!\Works\Phystech\Интеллектуальные системы\Author Attribution\DatasetRaw"
 savepath="D:\Chisto Moya Papka!!!\Works\Phystech\Интеллектуальные системы\Author Attribution\Dataset"
-author_list=['Белый Андрей', 'Брюсов В.Я','Гоголь Н.В', 'Горький Максим', 'Григорович Д.В', 'Достоевский Ф.М', 'Карамзин Н.М','Крюков Ф.Д',
-             'Лесков Н.С', 'Мамин-Сибиряк Д.Н', 'Толстой Л.Н','Тургенев И.С', 'Шолохов М.А']
+author_list=['Белый Андрей',]
 
 
 dataset_creator=Simple_RNN_Dataset_Creator(Simple_Tokenizer(remove_numerals=False),Simple_Sentence_Divider(),
