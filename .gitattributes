@@ -1,0 +1,2 @@
+Dataset/rnn_dataset.json filter=lfs diff=lfs merge=lfs -text
+RNNModel/araneum_upos_skipgram_300_2_2018.vec filter=lfs diff=lfs merge=lfs -text
