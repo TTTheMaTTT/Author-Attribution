@@ -20,7 +20,8 @@ class Simple_Text_Chunk_Creator:
         #Сначала найдём минимальное кол-во слов в указанных текстах. От этого кол-ва и будем отталкиваться
         print("Finding minimal words count in text chunks")
         author_texts=[]
-        min_text_words_count=100000000
+        min_text_words_count=5*self.min_words_count
+        #sum_words=0
         for author_name, file_names in author_text_files:
             texts=[]
             for file_name in file_names:
@@ -28,10 +29,12 @@ class Simple_Text_Chunk_Creator:
                     text=r.read()
                     text=self.preprocessor.preprocess(text)
                     word_count=self.tokenizer.count_words(text)
+                    #sum_words+=word_count
                     if word_count<self.min_words_count: continue
                     if word_count<min_text_words_count:
                         min_text_words_count=word_count
                     texts.append(text)
+
 
             author_texts.append((author_name, texts))
 
@@ -42,6 +45,7 @@ class Simple_Text_Chunk_Creator:
         print("Dividing texts into chunks")
         author_text_chunks=[]
         for author_name, texts in author_texts:
+            print("Обрабатываю тексты автора {}".format(author_name))
             text_chunks=[]
             for text in texts:
                 articles = [article for article in text.split('\n') if article != '']
@@ -54,10 +58,10 @@ class Simple_Text_Chunk_Creator:
                         chunk_words_count=0
                         continue
                     chunk+=article+"\n"
-                    if (chunk_words_count>min_text_words_count):
+                    if (chunk_words_count>=min_text_words_count):
                         text_chunks.append(chunk)
                         chunk=""
-                        chunk_word_count=0
+                        chunk_words_count = 0
 
             author_text_chunks.append((author_name, text_chunks))
 
